@@ -1,0 +1,16 @@
+DEFAULT menu
+PROMPT 0
+MENU TITLE DOPE Boot menu
+TIMEOUT 50
+TOTALTIMEOUT 0
+ONTIMEOUT $pxe_timeout_profile
+
+LABEL local
+        MENU LABEL (local)
+        MENU DEFAULT
+        LOCALBOOT -1
+
+$pxe_menu_items
+
+MENU end
+

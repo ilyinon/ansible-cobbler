@@ -1,0 +1,11 @@
+---
+
+# ---
+# Copy configuration files
+# ---
+
+- name: configure cobbler
+  template: src=./templates/setting.j2 dest=/etc/cobbler/setting
+
+
+

@@ -1,0 +1,49 @@
+---
+#- name: deploy cobbler in docker image
+#  hosts: all
+#
+#  tasks:
+
+
+# file: main.yml
+# The tasks for the Cobbler role
+
+# -------------
+# Prerequisites
+# -------------
+
+
+
+# -----
+# Add firewall rules
+# -----
+
+#- name: updating l rules
+#  firewalld: port={{item.value.port}}/{{item.value.protocol}} permanent={{item.value.permanent}} state={{item.value.state }} zone={{item.value.zone}}
+
+- name: "allow dhcp"
+  firewalld: service=dhcp permanent=true state=enabled
+  notify: restart firewalld
+
+- name: "allow tftp"
+  firewalld: service=tftp permanent=true state=enabled
+  notify: restart firewalld
+
+- name: "allow http"
+  firewalld: service=http permanent=true state=enabled
+  notify: restart firewalld
+
+
+# ---
+# Copy configuration files
+# ---
+
+- name: configure cobbler
+  template: src=./templates/setting.js dest=/etc/cobbler/setting
+
+
+# ---
+# Services
+# ---
+
+

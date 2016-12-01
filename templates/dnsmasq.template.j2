@@ -1,0 +1,30 @@
+# Cobbler generated configuration file for dnsmasq
+# $date
+#
+
+# resolve.conf .. ?
+#no-poll
+#enable-dbus
+read-ethers
+log-queries
+log-facility=/var/log/dnsmasq.log
+addn-hosts = /var/lib/cobbler/cobbler_hosts
+
+conf-dir=/etc/dnsmasq.d
+domain=local
+
+server=/domain.tld/
+server=/domain.tld/192.168.200.5
+server=/domain.tld/192.168.200.6
+
+
+resolv-file=/etc/dnsmasq.upstream
+interface=enp0s8
+bind-interfaces
+cache-size=1024
+dhcp-no-override
+dhcp-sequential-ip
+dhcp-option=6,10.20.0.2
+$insert_cobbler_system_definitions
+
+

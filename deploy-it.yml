@@ -1,0 +1,7 @@
+---
+- name: deploy cobbler in docker image
+  hosts: localhost
+
+  tasks:
+   - include: ./tasks/conf_files.yml
+
