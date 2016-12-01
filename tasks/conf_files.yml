@@ -4,8 +4,36 @@
 # Copy configuration files
 # ---
 
-- name: configure cobbler
+- name: configure cobbler setting
   template: src=./templates/setting.j2 dest=/etc/cobbler/setting
+
+- name: configure cobbler dnsmasq
+  template: src=./templates/dnsmasq.template.j2 dest=/etc/cobbler/dnsmasq.template
+
+- name: configure cobbler modules
+  template: src=./templates/modules.conf.j2 dest=/etc/cobbler/modules.conf
+
+- name: configure cobbler dhcp
+  template: src=./templates/dhcp.template.j2 dest=/etc/cobbler/dhcp.template
+
+- name: configure cobbler pxe pxedefault.template
+  template: src=./templates/pxedefault.template.j2 dest=/etc/cobbler/pxe/pxedefault.template
+
+- name: configure cobbler pxe pxelocal.template
+  template: src=./templates/pxelocal.template.j2 dest=/etc/cobbler/pxe/pxelocal.template
+
+- name: configure xinetd rsync
+  template: src=./templates/rsync.j2 dest=/etc/xinetd.d/rsync
+
+- name: configure xinetd tftp
+  template: src=./templates/tftp.j2 dest=/etc/xinetd.d/tftp
+
+- name: configure httpd cobbler-tftp.conf
+  template: src=./templates/cobbler-tftp.conf.j2 dest=/etc/httpd/conf.d/cobbler-tftp.conf
+
+
+
+
 
 
 
