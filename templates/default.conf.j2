@@ -1,0 +1,6 @@
+dhcp-range=default,10.20.0.3,10.20.0.254,255.255.255.0,120m
+dhcp-option=net:default,option:router,10.20.0.2
+dhcp-boot=net:default,pxelinux.0,boothost,10.20.0.2
+dhcp-match=set:ipxe,175
+dhcp-option-force=tag:ipxe,210,http://10.20.0.2/cobbler/boot/
+
