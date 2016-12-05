@@ -22,6 +22,9 @@
 - name: configure cobbler pxe pxelocal.template
   template: src=./templates/pxelocal.template.j2 dest=/etc/cobbler/pxe/pxelocal.template
 
+- name: configure cobbler pxe pxeprofile.template
+  template: src=./templates/pxeprofile.template.j2 dest=/etc/cobbler/pxe/pxeprofile.template
+
 - name: configure xinetd rsync
   template: src=./templates/rsync.j2 dest=/etc/xinetd.d/rsync
 
@@ -29,7 +32,7 @@
   template: src=./templates/tftp.j2 dest=/etc/xinetd.d/tftp
 
 - name: configure httpd cobbler-tftp.conf
-  template: src=./templates/cobbler-tftp.conf.j2 dest=/etc/apache2/conf-enabled/cobbler-tftp.conf
+  template: src=./templates/cobbler_tftp.conf.j2 dest=/etc/cobbler/cobbler_tftp.conf
 
 - name: configure httpd cobbler-tftp.conf
   template: src=./templates/default.conf.j2 dest=/etc/dnsmasq.d/default.conf

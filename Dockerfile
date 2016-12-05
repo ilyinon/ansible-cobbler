@@ -14,27 +14,28 @@ rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup" ]
 
 
-RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy
+#RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy
 
 RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install epel-release -y
-RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install ansible -y
+RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install cobbler cobbler-web xinetd dnsmasq wget debmirror pykickstart httpd net-tools -y
+RUN sed -i s/"^Listen 80"/"Listen 10.20.0.2:80"/ /etc/httpd/conf/httpd.conf ; \
+sed -i s/"^Listen 443"/"Listen 10.20.0.2:443"/ /etc/httpd/conf.d/ssl.conf ; \
+ln -s /etc/cobbler/cobbler_tftp.conf /etc/httpd/conf.d/cobbler_tftp.conf
+#RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install cobbler cobbler-web xinetd dnsmasq -y
+#RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install wget debmirror pykickstart fence-agents net-tools -y
+#RUN sed -i s/"^Listen 80"/"#Listen 80"/ /etc/httpd/conf/httpd.conf
 
-RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install cobbler cobbler-web -y
-RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install xinetd dnsmasq -y
-
-RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install  wget debmirror pykickstart fence-agents -y
-RUN export http_proxy=http://192.168.200.4:8080; export https_proxy=$http_proxy; yum install  net-tools -y
-
-RUN systemctl enable cobblerd 
-RUN systemctl enable httpd
-RUN systemctl enable xinetd
-RUN systemctl enable dnsmasq
+RUN systemctl enable cobblerd; systemctl enable httpd; systemctl enable xinetd; systemctl enable dnsmasq
+#RUN systemctl enable httpd
+#RUN systemctl enable xinetd
+#RUN systemctl enable dnsmasq
 #RUN systemctl enable rsyncd
 
-RUN ln -s /etc/cobbler/cobbler_tftp.conf /etc/httpd/conf.d/cobbler_tftp.conf
+#RUN ln -s /etc/cobbler/cobbler_tftp.conf /etc/httpd/conf.d/cobbler_tftp.conf
 
-EXPOSE 67
-EXPOSE 69
+EXPOSE 67/udp
+EXPOSE 69/udp
+EXPOSE 8089/tcp
 
 #RUN mkdir -p /u02/cobbler-ansible
 #COPY ./cobbler-ansible /u02/cobbler-ansible

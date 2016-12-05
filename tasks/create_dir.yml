@@ -1,0 +1,44 @@
+---
+
+# ---
+# Create required folder
+# ---
+
+- file:
+    path: /etc/cobbler
+    owner: root
+    group: root
+    mode:  0755
+
+- file: 
+    path: /etc/cobbler/pxe
+    owner: root
+    group: root
+    mode:  0755
+
+- file:
+    path: /var/lib/cobbler/loaders
+    owner: root
+    group: root
+    mode:  0755
+
+
+- file:
+    path: /etc/xinetd.d
+    owner: root
+    group: root
+    mode:  0755
+
+- file:
+    path: /etc/dnsmasq.d
+    owner: root
+    group: root
+    mode:  0755
+
+- file:
+    path: /var/lib/tftpboot
+    owner: root
+    group: root
+    mode:  0755
+
+

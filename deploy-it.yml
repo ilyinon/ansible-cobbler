@@ -1,8 +1,19 @@
 ---
 - name: deploy cobbler in docker image
   hosts: localhost
+  vars:
+    ip_network: 10.20.0.0
+    ip_mask:    255.255.255.0
+    ip_router:  10.20.0.1
+    ip_pxehost: 10.20.0.2
+    ip_start:   10.20.0.3
+    ip_end:     10.20.0.254
+    ip_dns1:    192.168.200.5
+    ip_dns2:    192.168.200.6
+    port_http:  8089
 
   tasks:
-   - include: /u02/cobbler-ansible/tasks/conf_files.yml
-   - include: /u02/cobbler-ansible/tasks/boot_files.yml
+   - include: ./tasks/create_dir.yml
+   - include: ./tasks/conf_files.yml
+   - include: ./tasks/boot_files.yml
 

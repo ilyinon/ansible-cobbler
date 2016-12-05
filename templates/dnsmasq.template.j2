@@ -14,8 +14,8 @@ conf-dir=/etc/dnsmasq.d
 domain=local
 
 server=/domain.tld/
-server=/domain.tld/192.168.200.5
-server=/domain.tld/192.168.200.6
+server=/domain.tld/{{ ip_dns1 }}
+server=/domain.tld/{{ ip_dns2 }}
 
 
 resolv-file=/etc/dnsmasq.upstream
@@ -24,7 +24,7 @@ bind-interfaces
 cache-size=1024
 dhcp-no-override
 dhcp-sequential-ip
-dhcp-option=6,10.20.0.2
+dhcp-option=6,{{ ip_pxehost }}
 $insert_cobbler_system_definitions
 
 

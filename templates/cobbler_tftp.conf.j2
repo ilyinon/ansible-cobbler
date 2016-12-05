@@ -1,0 +1,8 @@
+LISTEN {{ port_http }}
+alias /cobbler_tftp /var/lib/tftpboot
+
+<Directory /var/lib/tftpboot>
+  Options +Indexes +FollowSymLinks
+  Require all granted
+</Directory>
+

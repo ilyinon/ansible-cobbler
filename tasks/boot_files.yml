@@ -3,11 +3,10 @@
 # ---
 # Copy boot files
 # ---
-
 - name: copy menu.c32
-  copy: src=./files/menu.c32 dest=/var/lib/tftpboot/menu.c32 mode=0755
+  copy: src=./files/menu.c32 dest=/var/lib/cobbler/loaders/menu.c32 mode=0755
 
 - name: copy pxelinux.0
-  copy: src=./files/pxelinux.0 dest=/var/lib/tftpboot/pxelinux.0 mode=0755
+  copy: src=./files/pxelinux.0 dest=/var/lib/cobbler/loaders/pxelinux.0 mode=0755
 
 

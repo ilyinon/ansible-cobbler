@@ -73,7 +73,7 @@ manage_tftpd: 1
 manage_rsync: 0
 manage_forward_zones: []
 manage_reverse_zones: []
-next_server: 10.20.0.2
+next_server: {{ ip_pxehost }}
 power_management_default_type: 'ipmitool'
 power_template_dir: "/etc/cobbler/power"
 pxe_just_once: 0
@@ -90,7 +90,7 @@ restart_dhcp: 1
 run_install_triggers: 1
 scm_track_enabled: 0
 scm_track_mode: "git"
-server: 10.20.0.2
+server: {{ ip_pxehost }}
 client_use_localhost: 0
 client_use_https: 0
 snippetsdir: /var/lib/cobbler/snippets
